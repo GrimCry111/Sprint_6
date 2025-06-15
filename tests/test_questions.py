@@ -3,7 +3,7 @@ import allure
 from page_object import main_samokat_page
 
 class TestQuestion:
-    
+
     list_of_questions  = ['Сутки — 400 рублей. Оплата курьеру — наличными или картой.',
                         'Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.',
                         'Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.',
@@ -16,13 +16,13 @@ class TestQuestion:
     @allure.title('Проверка всех Важных вопросов на главной странице')
     @allure.description('На странице ищем элемент Вопрос и проверяем, что его текст == эталонному тексту')
     def test_question(self,open_main_page):
-        self.driver = open_main_page
-        self.home_page = main_samokat_page.MainSamokatPage(self.driver)
-        self.home_page.close_banner()
-        count = len(self.home_page.find_all_questions())
+        driver = open_main_page
+        home_page = main_samokat_page.MainSamokatPage(driver)
+        home_page.close_banner()
+        count = len(home_page.find_all_questions())
         for index in range(0,count):
             print(index)
-            self.home_page.click_to_question(index)
-            actual_text = self.home_page.check_visible_of_question(index)
+            home_page.click_to_question(index)
+            actual_text = home_page.check_visible_of_question(index)
             assert actual_text == self.list_of_questions[index], \
                 f"Ожидалось: {self.list_of_questions[index]}, получено: {actual_text}"
