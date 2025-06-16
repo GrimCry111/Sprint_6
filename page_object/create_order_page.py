@@ -111,3 +111,13 @@ class CreateOrderPage(BasePage):
     @allure.step('Нажмём кнопку, чтобы увидеть оформленный заказ')
     def click_to_show_order(self):
         self.click_to_element(self.button_look_status)  
+
+    @allure.title('Заполняем данные по заказу')
+    def complete_order(self):
+        self.complete_first_step()
+        self.click_to_next_step()
+        self.complete_second_step()
+        self.click_to_compete_order()
+        self.click_to_confirm()
+        self.click_to_show_order()
+        self.assert_page("https://qa-scooter.praktikum-services.ru/track")

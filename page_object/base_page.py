@@ -16,3 +16,6 @@ class BasePage:
 
     def enter_text(self,locator,enter_text):
         self.driver.find_element(*locator).send_keys(enter_text)
+
+    def assert_page(self,url):
+        assert url in self.driver.current_url
